@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, HeaderComponent, LandingPageComponent],
   imports: [
@@ -18,6 +18,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     NgbModule,
     NgbPaginationModule,
     NgbAlertModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
