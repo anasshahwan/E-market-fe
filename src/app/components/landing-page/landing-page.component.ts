@@ -25,7 +25,6 @@ export class LandingPageComponent implements OnInit {
   companies: any;
   ngOnInit(): void {
     this.getCompanySeleted();
-    // this.getCompanyDetailsBycode(this.selectedCompany);
   }
 
   getCompanyDetailsBycode(company_code: string) {
@@ -34,16 +33,26 @@ export class LandingPageComponent implements OnInit {
       .subscribe((data: any) => {
         this.companyDetails = data.company_details[0];
         this.stock_prices = data.stock_prices[0].result;
-        //  console.log(this.companyDetails);
-
-        console.log(this.stock_prices);
+        this.calculator();
       });
-    // console.log(res);
   }
 
-  calculateAvg() {
-    //x console.log(this.stock_prices.stock_price);
+  calculator() {
+    let prices = this.stock_prices.map((a: any) => a.stock_price);
+    this.minValue = Math.min(...prices);
+    this.maxValue = Math.max(...prices);
+    this.avgValue = this.calcAvg(prices);
   }
+
+  calcAvg(prices: any) {
+    let sum = 0;
+    for (var price of prices) {
+      sum += price;
+    }
+    let average = sum / prices.length;
+    return parseFloat(average.toFixed(2));
+  }
+
   getAllCompanies() {
     const result = this.companyService.getAllCompanies().subscribe((data) => {
       console.log('All companies', data);
