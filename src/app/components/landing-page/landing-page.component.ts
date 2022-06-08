@@ -15,7 +15,12 @@ export class LandingPageComponent implements OnInit {
   ) {}
   //TODO create a company model
   companyDetails: any;
+  stock_prices: any;
   selectedCompany: string = '';
+
+  minValue: number = 0;
+  maxValue: number = 0;
+  avgValue: number = 0;
 
   companies: any;
   ngOnInit(): void {
@@ -28,9 +33,16 @@ export class LandingPageComponent implements OnInit {
       .getCompanyByCompanyCode(company_code)
       .subscribe((data: any) => {
         this.companyDetails = data.company_details[0];
-        console.log(this.companyDetails);
+        this.stock_prices = data.stock_prices[0].result;
+        //  console.log(this.companyDetails);
+
+        console.log(this.stock_prices);
       });
     // console.log(res);
+  }
+
+  calculateAvg() {
+    //x console.log(this.stock_prices.stock_price);
   }
   getAllCompanies() {
     const result = this.companyService.getAllCompanies().subscribe((data) => {
@@ -43,6 +55,7 @@ export class LandingPageComponent implements OnInit {
       this.selectedCompany = data;
       console.log('you can here here', this.selectedCompany);
       this.getCompanyDetailsBycode(data);
+      console.log('HEllo');
     });
   }
 }

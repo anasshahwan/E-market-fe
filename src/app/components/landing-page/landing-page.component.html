@@ -2,11 +2,11 @@
   <div class="company-details">
     <div class="company-code flex">
       <div>Company Code:</div>
-      <div>{{ companyDetails.company_code }}</div>
+      <div>{{ companyDetails?.company_code }}</div>
     </div>
     <div class="company-name flex">
       <div>Company Name:</div>
-      <div>{{ companyDetails.company_name }}</div>
+      <div>{{ companyDetails?.company_name }}</div>
     </div>
   </div>
   <hr />
@@ -25,15 +25,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1.4</td>
-            <td>May,15,2022</td>
-            <td>12.01 AM</td>
-          </tr>
-          <tr>
-            <td>1.8</td>
-            <td>May,20,2022</td>
-            <td>10.00 PM</td>
+          <tr *ngFor="let stock of stock_prices">
+            <td>{{ stock.stock_price }}</td>
+            <td>{{ stock.create_at | date }}</td>
+            <td>{{ stock.create_at | date: "shortTime" }}</td>
           </tr>
         </tbody>
       </table>
