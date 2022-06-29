@@ -5,15 +5,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CompanyService {
   constructor(private http: HttpClient) {}
-  apiUrl1: string = 'http://localhost:8080/api/v1.0/market/company/getall';
-
-  apiUrl: string = 'http://localhost:8080/api/v1.0/market/company/info/';
+  apiUrl: string =
+    'http://ec2-3-15-217-13.us-east-2.compute.amazonaws.com:8080/api/v1.0/market/company/';
 
   getAllCompanies() {
-    return this.http.get(this.apiUrl1);
+    return this.http.get(this.apiUrl + '/getall');
   }
 
   getCompanyByCompanyCode(company_code: string) {
-    return this.http.get(this.apiUrl + company_code);
+    return this.http.get(this.apiUrl + '/info/' + company_code);
   }
 }
